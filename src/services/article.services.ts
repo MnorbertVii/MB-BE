@@ -28,29 +28,34 @@ export default class ArticleServices {
 	}
 
 	static async removeArticle(id: string): Promise<any> {
+		const article = await Article.findById(new ObjectId(id));
+		if (!article) {
+			throw new Error('Article not found');
+		}
 		return await Article.deleteOne({ _id: id });
 	}
 
-	static async editArticle(id: string, data: any): Promise<boolean | string[]> {
+	static async editArticle(id: string, data: any): Promise<Article | string[]> {
 		const { error, value } = validateArticle(data);
 		if (error) {
-			return error.details.map((detail: any) => detail.message);
+			return error.details.map((err: any) => err.message);
 		} else {
-			const article = await Article.findOne({ _id: id });
+			const updateData: any = {};
+			console.log(value);
+			if (data.title !== null) {
+				updateData.title = data.title;
+			}
+			if (data.content !== null) {
+				updateData.content = data.content;
+			}
+			if (data.image !== null) {
+				updateData.image = data.image;
+			}
+			const article = await Article.findOneAndUpdate({ _id: id }, { $set: updateData }, { new: true });
 			if (!article) {
 				throw new Error('Article not found');
 			}
-			if (data.title !== null) {
-				article.title = data.title;
-			}
-			if (data.content !== null) {
-				article.content = data.content;
-			}
-			if (data.image !== null) {
-				article.image = data.image;
-			}
-			await article.save();
-			return true;
+			return article;
 		}
 	}
 }
