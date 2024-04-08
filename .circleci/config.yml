@@ -1,0 +1,30 @@
+version: 2.1
+
+orbs:
+  coveralls: coveralls/coveralls@2.2.1
+  heroku: circleci/heroku@1.2.6
+
+workflows:
+  heroku_deploy:
+    jobs:
+      - heroku/deploy-via-git:
+          filters:
+            branches:
+              only:
+                - main
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:17
+    environment:
+      DATABASE_URL: process.env.DB_URL
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm test
+      - coveralls/upload
+
+notify:
+  webhooks:
+    - url: https://coveralls.io/webhook?repo_token=${process.env.COVERALLS_REPO_TOKEN}
