@@ -1,10 +1,6 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-interface Comment {
-	name: string;
-	email: string;
-	message: string;
-}
+import { Comment } from "./comment";
 
 interface Likes {
 	likesNumber: number;
@@ -23,7 +19,7 @@ const articleSchema: Schema<Article> = new Schema({
 	title: String,
 	content: String,
 	image: String,
-	comments: [{ name: String, message: String, email: String }],
+	comments: [{ name: String, message: String, email: String}],
 	likes: {
 		likesNumber: { type: Number, default: 0 },
 		user: []

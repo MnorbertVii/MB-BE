@@ -63,15 +63,11 @@ export default class UserControllers {
 
     static async getAllUsers(req: any, res: any) {
         try {
-            if (res.locals.email) {
                 let response: any = await UserServices.getUsers();
                 return res.status(200).json({
                     message: "All users",
                     data: response
                 });
-            } else {
-                return res.status(401).json({ message: "Unauthorized" });
-            }
         } catch (error: any) {
             console.log(error);
             res.status(500);

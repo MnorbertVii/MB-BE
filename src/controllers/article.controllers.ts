@@ -110,27 +110,5 @@ export class ArticleControllers {
 		}
 	}
 
-// 	static async updateArticle(req: Request, res: Response) {
-// 		try {
-// 			let data = new Article({});
-// 			if (req.body.title) {
-// 				data.title = req.body.title;
-// 			}
-// 			if (req.body.content) {
-// 				data.content = req.body.content;
-// 			}
-// 			if (req.body.image) {
-// 				data.image = req.body.image;
-// 			}
-// 			const response = await ArticleServices.editArticle(req.params.id, data);
-// 			if (response == true) {
-// 				return res.status(200).json({ data });
-// 			} else {
-// 				return res.status(400).json({ response });
-// 			}
-// 		} catch (error: any) {
-// 			console.log(error);
-// 			return res.status(500).json({ error: error.message });
-// 		}
-// 	}
+
 }

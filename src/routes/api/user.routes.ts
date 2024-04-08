@@ -7,6 +7,6 @@ const route = express.Router();
 
 route.post('/signup', UserControllers.register);
 route.post('/login', UserControllers.loginUser);
-route.get('/',ensureAuthenticated,isAdmin,UserControllers.getAllUsers);
+route.get('/',UserControllers.getAllUsers);
 
 export default route;

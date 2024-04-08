@@ -35,7 +35,7 @@ export default class UserServices {
         );
         return {
           message: "User created successfully",
-          token: token,
+          // token: token,
           user: {
             id: newUser._id,
             email: newUser.email,
