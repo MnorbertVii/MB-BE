@@ -41,10 +41,14 @@ export class ArticleControllers {
 	static async viewArticles(req: Request, res: Response) {
 		try {
 			const articles = await ArticleServices.displayArticles();
-			return res.status(200).json({
-				message: "List of Articles found",
-				Articles: articles
-			});
+			if (articles.length === 0) {
+				return res.status(200).json({ message: "Oops, no blogs created to display" });
+			} else {
+				return res.status(200).json({
+					message: "List of Articles found",
+					Articles: articles
+				});
+			}
 		} catch (error: any) {
 			console.log(error);
 			return res.status(500).json({ error: error.message });
