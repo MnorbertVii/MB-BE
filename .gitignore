@@ -2,4 +2,3 @@ node_modules
 .env
 uploadedImages
 images
-package-lock.json
