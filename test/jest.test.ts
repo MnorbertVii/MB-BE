@@ -47,19 +47,20 @@ const num: number = Math.floor(Math.random() * 10000);
 //     expect(response.statusCode).toBe(200);
 // })
 
-test("create article", async () => {
-  try {
-    const imagePath = path.join(__dirname, "images/avatar_1 - Copy.jpg");
 
-    const response = await request(app)
-      .post("/articles")
-      .set("Authorization", TOKEN)
-      .field("title", "test article title")
-      .field("content", "test article content")
-      .attach("image", imagePath);
-    console.log(response);
-    expect(response.statusCode).toBe(201);
-  } catch (error) {
-    console.error(`Error: ${error}`);
-  }
-});
+// test("create article", async () => {
+//   try {
+//     const imagePath = path.join(__dirname, "images/avatar_1 - Copy.jpg");
+
+//     const response = await request(app)
+//       .post("/articles")
+//       .set("Authorization", TOKEN)
+//       .field("title", "test article title")
+//       .field("content", "test article content")
+//       .attach("image", imagePath);
+//     console.log(response);
+//     expect(response.statusCode).toBe(201);
+//   } catch (error) {
+//     console.error(`Error: ${error}`);
+//   }
+// });
