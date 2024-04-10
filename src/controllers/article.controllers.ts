@@ -17,7 +17,7 @@ export class ArticleControllers {
             }
 			const imageUrl = result.secure_url;
 			const response = await ArticleServices.postArticle({title, content, image: imageUrl});
-			console.log(response);
+			// console.log(response);
 			if (response !== true) {
 				return res.status(400).json({ response });
 			} else {

@@ -15,7 +15,7 @@ async function Authenticator() {
 			},
 			async (jwtPayload, done) => {
 				try {
-					console.log("Payload:", jwtPayload);
+					// console.log("Payload:", jwtPayload);
 					const user = await User.findOne({ _id: jwtPayload.id });
 					if (!user) {
 						console.log("User not found");
