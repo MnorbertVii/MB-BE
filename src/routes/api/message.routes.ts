@@ -7,8 +7,8 @@ const route: Router = express.Router();
 
 Authenticator().then(() => {
     route.post("/", MessageControllers.postMessage);
-    route.get("/",MessageControllers.displayMessages);
-    route.delete("/:id",MessageControllers.removeMessage);
+    route.get("/",ensureAuthenticated,isAdmin,MessageControllers.displayMessages);
+    route.delete("/:id",ensureAuthenticated,isAdmin,MessageControllers.removeMessage);
 });
 
 

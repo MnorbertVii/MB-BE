@@ -31,7 +31,7 @@ export default class UserServices {
             email: newUser.email,
           },
           SECRET_KEY,
-          { expiresIn: "1h" }
+          { expiresIn: "30d" }
         );
         return {
           message: "User created successfully",
@@ -62,7 +62,7 @@ export default class UserServices {
             email: existingUser.email,
           },
           SECRET_KEY,
-          { expiresIn: "1h" }
+          { expiresIn: "30d" }
         );
         const validPassword = await bcrypt.compare(
           data.password,

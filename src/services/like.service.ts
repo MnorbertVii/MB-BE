@@ -8,7 +8,7 @@ export class LikeServices {
 		if (!article) {
 			throw new Error('Article not found');
         }
-		console.log(article.likes);
+		// console.log(article.likes);
 		if (article.likes.user.includes(email)) {
 			let c = article.likes.likesNumber > 0 ? article.likes.likesNumber - 1 : 0;
 			let b = article.likes.user.filter((p: string) => p !== email);
@@ -19,7 +19,7 @@ export class LikeServices {
 			console.log(c);
 		} else {
 			let a = article.likes.likesNumber + 1;
-			let p = article.likes.user;
+			let p = [email, ...article.likes.user];
 			p.push(email);
 			await Article.findOneAndUpdate(
 				{_id: new mongoose.Types.ObjectId(id) },

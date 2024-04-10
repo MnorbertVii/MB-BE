@@ -8,10 +8,10 @@ Authenticator();
 
 const route: Router = express.Router();
 
-route.post("/", upload.single('image'), ArticleControllers.createArticle);
+route.post("/",ensureAuthenticated,isAdmin,upload.single('image'), ArticleControllers.createArticle);
 route.get("/", ArticleControllers.viewArticles);
 route.get("/:id", ArticleControllers.viewSingleArticle);
-route.delete("/:id",ArticleControllers.deleteArticle);
-route.put("/:id",upload.single('image'),ArticleControllers.updateArticle);
+route.delete("/:id",ensureAuthenticated,isAdmin,ArticleControllers.deleteArticle);
+route.put("/:id",ensureAuthenticated,isAdmin,upload.single('image'),ArticleControllers.updateArticle);
 
 export default route;
