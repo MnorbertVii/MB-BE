@@ -25,6 +25,9 @@ jobs:
       DATABASE_URI: process.env.DB_URL
     steps:
       - checkout
+      - run:
+          name: List files
+          command: ls -la ../images
       - run: npm install
       - run: npm test
       - coveralls/upload
