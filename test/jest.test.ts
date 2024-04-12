@@ -26,17 +26,17 @@ describe('Articles API', () => {
     });
 	
   });
-
+  
   it('should create an article with image', async () => {
     
-    const filename = 'avatar_1 - Copy.jpg';
-    const filePath = `images/${filename}`;
+    const imagePath = '../images/avatar_1 - Copy.jpg';
+    const filePath = path.join(__dirname, imagePath);
     const file = fs.readFileSync(filePath);
 
     const response = await request(app)
       .post('/articles')
 	  .set("Authorization", TOKEN)
-      .attach('image', file, filename)
+      .attach('image', file, imagePath)
       .field('title', 'Test Article')
       .field('content', 'This is a test article.');
 
@@ -88,14 +88,14 @@ describe('updating an article with an image', () => {
         throw new Error('No article found');
       }
       const id = article._id;
-      const filename = 'avatar_2 - Copy.jpg';
-      const filePath = `images/${filename}`;
+      const imagePath = '../images/avatar_2 - Copy.jpg';
+      const filePath = path.join(__dirname, imagePath);
       const file = fs.readFileSync(filePath);
   
       const response = await request(app)
         .put(`/articles/${id}`)
         .set("Authorization", TOKEN)
-        .attach('image', file, filename)
+        .attach('image', file, imagePath)
         .field('title', 'updated Test Article')
         .field('content', 'This is a updated test article.');
   
