@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 export class LikeServices {
 	static async like(id: string, email: string) { 
-		console.log(id);
+		// console.log(id);
 		const article = await Article.findById(new mongoose.Types.ObjectId(id));
 		if (!article) {
 			throw new Error('Article not found');
@@ -16,7 +16,7 @@ export class LikeServices {
 				{ _id: new mongoose.Types.ObjectId(id) },
 				{ likes: { likesNumber: c, user: b } }
 			);
-			console.log(c);
+			// console.log(c);
 		} else {
 			let a = article.likes.likesNumber + 1;
 			let p = [email, ...article.likes.user];
@@ -25,7 +25,7 @@ export class LikeServices {
 				{_id: new mongoose.Types.ObjectId(id) },
 				{ likes: { likesNumber: a, user: p } }
 			);
-			console.log(a);
+			// console.log(a);
 		}
 
 		const likedArticle = await Article.findById(new mongoose.Types.ObjectId(id));

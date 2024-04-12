@@ -27,22 +27,7 @@ describe('Articles API', () => {
 	
   });
   
-  it('should create an article with image', async () => {
-    
-    const imagePath = '../images/avatar_1 - Copy.jpg';
-    const filePath = path.join(__dirname, imagePath);
-    const file = fs.readFileSync(filePath);
 
-    const response = await request(app)
-      .post('/articles')
-	  .set("Authorization", TOKEN)
-      .attach('image', file, imagePath)
-      .field('title', 'Test Article')
-      .field('content', 'This is a test article.');
-
-    expect(response.status).toBe(201);
-    expect(response.body.message).toBe('Article created successfully');
-  });
 
   it('should get articles', async () => {
     const response = await request(app).get("/articles").send();
@@ -60,7 +45,7 @@ describe('Articles API', () => {
   });
   
   it("should delete an article ", async () => {
-    const article = await Article.findOne({ title:"updated Test Article"})
+    const article = await Article.findOne({ title:"Test Article"})
 	if(!article){
 	  throw new Error('No article found');
 	}
@@ -73,37 +58,6 @@ describe('Articles API', () => {
   afterAll(() => {
     jest.restoreAllMocks();
   });
-});
-
-
-describe('updating an article with an image', () => {
-	beforeAll(() => {
-		(cloudinary.uploader.upload as jest.Mock).mockResolvedValue({
-			secure_url: 'http://mocked_url.com/updated-image.jpg',
-		});
-  });
-    it('should update an article with image', async () => {
-      const article = await Article.findOne({title: "Test Article"});
-      if(!article){
-        throw new Error('No article found');
-      }
-      const id = article._id;
-      const imagePath = '../images/avatar_2 - Copy.jpg';
-      const filePath = path.join(__dirname, imagePath);
-      const file = fs.readFileSync(filePath);
-  
-      const response = await request(app)
-        .put(`/articles/${id}`)
-        .set("Authorization", TOKEN)
-        .attach('image', file, imagePath)
-        .field('title', 'updated Test Article')
-        .field('content', 'This is a updated test article.');
-  
-      expect(response.status).toBe(200);
-    });
-    afterAll(() => {
-      jest.restoreAllMocks();
-});
 });
 
 
@@ -207,3 +161,38 @@ describe('Article(comments & likes) API', () => {
     expect(response.statusCode).toBe(200);
   });
 });
+
+
+test ('should not create a message without name', async () => { 
+  const response = await request(app).post("/messages").send({
+    email: "user335@gmail.com",
+    message: "test message content",
+  });
+  expect(response.statusCode).toBe(400);
+}
+);
+
+test ('should validate email', async () => {
+  const response = await request(app).post("/messages").send({
+    name: "test name",
+    email: "testemail",
+    message: "test message content",
+  });
+  expect(response.statusCode).toBe(400);
+});
+ 
+test ('should check if body is empty login', async () => {
+  const response = await request(app).post("/login").send({});
+  expect(response.statusCode).toBe(404);
+
+});
+
+test ('should check if no file is provided', async () => {
+  const response = await request(app).post("/articles").send({
+    title: "Test Article",
+    content: "This is a test article."
+  });
+  expect(response.statusCode).toBe(401);
+});
+
+

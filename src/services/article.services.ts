@@ -41,7 +41,7 @@ export default class ArticleServices {
 			return error.details.map((err: any) => err.message);
 		} else {
 			const updateData: any = {};
-			console.log(value);
+			// console.log(value);
 			if (data.title !== null) {
 				updateData.title = data.title;
 			}
