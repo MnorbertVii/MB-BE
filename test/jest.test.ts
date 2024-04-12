@@ -45,7 +45,7 @@ describe('Articles API', () => {
   });
   
   it("should delete an article ", async () => {
-    const article = await Article.findOne({ title:"updated Test Article"})
+    const article = await Article.findOne({ title:"test article title"})
 	if(!article){
 	  throw new Error('No article found');
 	}
