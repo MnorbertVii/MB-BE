@@ -27,7 +27,7 @@ jobs:
       - checkout
       - run:
           name: List files
-          command: ls -la ../images
+          command: ls -la ./images
       - run: npm install
       - run: npm test
       - coveralls/upload
