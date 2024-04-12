@@ -19,7 +19,7 @@ const articleSchema: Schema<Article> = new Schema({
 	title: String,
 	content: String,
 	image: String,
-	comments: [{ name: String, comment: String }],
+	comments: [{ user: String, comment: String }],
 	likes: {
 		likesNumber: { type: Number, default: 0 },
 		user: []

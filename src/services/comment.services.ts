@@ -3,7 +3,7 @@ import validateComment from "../validations/comment.validation";
 import {  Comment } from "../models/comment";
 export class CommentServices {
 	static async sendComment(data: Comment, id: string): Promise<boolean | string[]> {
-		console.log(data);
+		// console.log(data);
 		const { error } = validateComment(data);
 		
 		if (error) {
@@ -14,7 +14,7 @@ export class CommentServices {
 			throw new Error('Article not found');
 		}	
 		article.comments.push(data);
-		console.log(article.comments);
+		// console.log(article.comments);
 		await article.save();
 		return true;
 	}

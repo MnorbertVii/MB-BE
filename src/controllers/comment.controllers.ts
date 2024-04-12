@@ -6,8 +6,8 @@ export class CommentController {
 		try {
 			const { name, comment } = req.body;
 			const setComment : Comment = {
-				name: res.locals.name,
-				comment: comment,
+				user: res.locals.email,
+				comment: comment
 			};
 			const response = await CommentServices.sendComment(
 				setComment,

@@ -12,9 +12,9 @@ const authMiddleware = async (req: Request, res: Response, next: NextFunction) =
 		}
 
 		const token = bearerToken.split(" ")[1];
-		const verified = jwt.verify(token, SECRET_KEY) as { email: string, name: string };
+		const verified = jwt.verify(token, SECRET_KEY) as { email: string};
 		const userEmail = verified.email;
-		const userName = verified.name;
+
 
 		const existingUser = await User.findOne({ email: userEmail });
 		if (!existingUser) {
@@ -22,7 +22,6 @@ const authMiddleware = async (req: Request, res: Response, next: NextFunction) =
 		}
 
 		res.locals.email = userEmail;
-		res.locals.name = userName;
 		next();
 	} catch (error) {
 		res.status(500).json({ error: error });
