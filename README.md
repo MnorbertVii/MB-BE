@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/MnorbertVii/MB-BE/badge.svg?branch=main)](https://coveralls.io/github/MnorbertVii/MB-BE?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/MnorbertVii/MB-BE/badge.svg)](https://coveralls.io/github/MnorbertVii/MB-BE)
 
 
 {<img src="https://coveralls.io/repos/github/MnorbertVii/MB-BE/badge.svg" alt="Coverage Status" />}[https://coveralls.io/github/MnorbertVii/MB-BE]
