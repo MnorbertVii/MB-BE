@@ -82,7 +82,7 @@ describe('Users API', () => {
 
   it('should log in a user', async () => {
     const response = await request(app).post("/users/login").send(
-      { email:"user6711@gmail.com",
+      { email:"user4392@gmail.com",
         password:"user123"
       }
     );
