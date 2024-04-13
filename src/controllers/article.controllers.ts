@@ -42,7 +42,7 @@ export class ArticleControllers {
 		try {
 			const articles = await ArticleServices.displayArticles();
 			if (articles.length === 0) {
-				return res.status(404).json({ message: "Oops, no blogs created to display" });
+				return res.status(400).json({ message: "Oops, no blogs created to display" });
 			} else {
 				return res.status(200).json({
 					message: "List of Articles found",

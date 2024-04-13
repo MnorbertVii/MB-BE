@@ -5,6 +5,7 @@ import Message from "../src/models/message.model";
 import fs from "fs";
 import path from "path";
 import {v2 as cloudinary} from 'cloudinary';
+import exp from "constants";
 jest.mock('cloudinary');
 
 
@@ -32,6 +33,7 @@ describe('Articles API', () => {
   it('should get articles', async () => {
     const response = await request(app).get("/articles").send();
     expect(response.statusCode).toBe(200);
+    expect(response.body).toHaveProperty("message");
   });
 
   it('should get single article', async () => {
@@ -42,6 +44,7 @@ describe('Articles API', () => {
     const id = article._id;
     const response =  await request(app).get("/articles/"+id);
     expect(response.statusCode).toBe(200);
+    expect(response.body).toHaveProperty("message");
   });
   
   it("should delete an article ", async () => {
@@ -52,6 +55,7 @@ describe('Articles API', () => {
     const id = article._id
     const response = await request(app).delete("/articles/"+id).set("Authorization",TOKEN)
     expect(response.statusCode).toBe(200);
+    expect(response.body).toHaveProperty("message");
 })
    
 
@@ -83,6 +87,8 @@ describe('Users API', () => {
       }
     );
     expect(response.statusCode).toBe(200);
+    expect(response.body).toHaveProperty("Token");
+    expect(response.body).toHaveProperty("message");
   });
 });
 
