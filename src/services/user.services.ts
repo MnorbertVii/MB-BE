@@ -60,6 +60,7 @@ export default class UserServices {
           {
             id: existingUser._id,
             email: existingUser.email,
+            isAdmin: existingUser.isAdmin
           },
           SECRET_KEY,
           { expiresIn: "30d" }

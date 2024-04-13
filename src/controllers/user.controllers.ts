@@ -16,7 +16,7 @@ export default class UserControllers {
                 if (response.error) {
                     return res.status(400).json({ errors: response.error });
                 } else if (response === "Oops, Email already exists") {
-                    return res.status(500).json({
+                    return res.status(400).json({
                         message: response
                     });
                 } else {
@@ -24,9 +24,7 @@ export default class UserControllers {
                 }
             }
         } catch (error: any) {
-            console.log(error);
-            res.status(500);
-            return res.json({
+            res.status(500).json({
                 error: "Internal Server Error",
                 message: error.message
             });
@@ -47,12 +45,12 @@ export default class UserControllers {
                 return res.status(400).json({ message: response });
             } else {
                 return res.status(200).json({
-                    message: "Login successful, here's the token",
-                    Token: response
+                    message: "Login successful",
+                    Token: response,
+                    isAdmin: response.isAdmin
                 });
             }
         } catch (error: any) {
-            console.log(error);
             res.status(500);
             return res.json({
                 error: "Internal Server Error",
@@ -69,7 +67,6 @@ export default class UserControllers {
                     data: response
                 });
         } catch (error: any) {
-            console.log(error);
             res.status(500);
             return res.json({
                 error: "Internal Server Error",
