@@ -4,6 +4,9 @@ import mongoose from 'mongoose';
 import "dotenv/config";
 import routes from './routes';
 import morgan from 'morgan';
+import swaggerUi from 'swagger-ui-express';
+import specs from '../documentation';
+
 
 const app: Express = express();
 app.use(cors({origin: "*" }));
@@ -21,6 +24,7 @@ try{
     console.log("Connected to database");
 
     app.use('/', routes);
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
     app.use('*', (req: Request, res: Response) => {
         res.status(404).json({message: "Resource Not Found"});
     });

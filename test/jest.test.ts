@@ -202,3 +202,15 @@ test ('should check if no file is provided', async () => {
 });
 
 
+// test('should update an article', async () => {
+//   const article = await Article.findOne({ title: "test article title"});
+//   if (!article) {
+//     throw new Error('No article found');
+//   }
+//   const id = article._id;
+//   const response = await request(app).put("/articles/"+id).set("Authorization",TOKEN).send({
+//     title: "Test Article",
+//     content: "This is a test article."
+//   });
+//   expect(response.statusCode).toBe(200);
+// })
