@@ -9,21 +9,21 @@ export class LikeServices {
 			throw new Error('Article not found');
         }
 		// console.log(article.likes);
-		if (article.likes.user.includes(email)) {
+		if (article.likes.users.includes(email)) {
 			let c = article.likes.likesNumber > 0 ? article.likes.likesNumber - 1 : 0;
-			let b = article.likes.user.filter((p: string) => p !== email);
+			let b = article.likes.users.filter((p: string) => p !== email);
 			await Article.findOneAndUpdate(
 				{ _id: new mongoose.Types.ObjectId(id) },
-				{ likes: { likesNumber: c, user: b } }
+				{ likes: { likesNumber: c, users: b } }
 			);
 			// console.log(c);
 		} else {
 			let a = article.likes.likesNumber + 1;
-			let p = [email, ...article.likes.user];
+			let p = [...article.likes.users];
 			p.push(email);
 			await Article.findOneAndUpdate(
 				{_id: new mongoose.Types.ObjectId(id) },
-				{ likes: { likesNumber: a, user: p } }
+				{ likes: { likesNumber: a, users: p } }
 			);
 			// console.log(a);
 		}

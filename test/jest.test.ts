@@ -10,7 +10,7 @@ jest.mock('cloudinary');
 
 
 const TOKEN: string =
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MGNiMTViN2IxNmNiODJjZTMyYjVmNCIsImVtYWlsIjoibmltdWhub3JiZXJ0QGdtYWlsLmNvbSIsImlhdCI6MTcxMjc1MDQyOCwiZXhwIjoxNzE1MzQyNDI4fQ.6j43aF1Ihv2nVZOzk4v8TJBGOz5Ai4779_CYhzcq6Oc";
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MGNiMTViN2IxNmNiODJjZTMyYjVmNCIsImZ1bGxOYW1lIjoiTklSVUdJUkEgTXVoaXppIE5vcmJlcnQiLCJlbWFpbCI6Im5pbXVobm9yYmVydEBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTMxMTU4MTAsImV4cCI6MTcxNTcwNzgxMH0.lcX4ZB5Ey52-PrrSuTn_3J4s7YbyrWDY3hhZSoaAYzY";
 const num: number = Math.floor(Math.random() * 10000);
 
 

@@ -4,7 +4,7 @@ import { Comment } from "./comment";
 
 interface Likes {
 	likesNumber: number;
-	user: any[];
+	users: any[];
 }
 
 interface Article extends Document {
@@ -22,7 +22,7 @@ const articleSchema: Schema<Article> = new Schema({
 	comments: [{ user: String, comment: String }],
 	likes: {
 		likesNumber: { type: Number, default: 0 },
-		user: []
+		users: []
 	},
 });
 

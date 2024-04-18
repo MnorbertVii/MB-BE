@@ -59,6 +59,7 @@ export default class UserServices {
         let token = jwt.sign(
           {
             id: existingUser._id,
+            fullName: existingUser.fullName,
             email: existingUser.email,
             isAdmin: existingUser.isAdmin
           },

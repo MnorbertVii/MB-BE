@@ -4,9 +4,9 @@ import { Comment } from  "../models/comment";
 export class CommentController {
 	static async postComment(req:Request, res:Response ) {
 		try {
-			const { name, comment } = req.body;
+			const { comment } = req.body;
 			const setComment : Comment = {
-				user: res.locals.email,
+				user: res.locals.fullName,
 				comment: comment
 			};
 			const response = await CommentServices.sendComment(

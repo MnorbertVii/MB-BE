@@ -88,7 +88,7 @@ export class ArticleControllers {
 			const response = await ArticleServices.editArticle(req.params.id, data);
 			if (response instanceof Article) {
 				return res.status(200).json({
-					message: `Article with id:${req.params.id} Updated successfully`, 
+					message: 'Updated successfully', 
 					UpdatedArticle: response
 				});
 			} else {
@@ -99,8 +99,6 @@ export class ArticleControllers {
 			return res.status(500).json({ error: error.message });
 		}
 	}
-
-
 
 
 	static async deleteArticle(req: Request, res: Response) {
